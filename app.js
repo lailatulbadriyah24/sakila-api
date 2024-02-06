@@ -1,5 +1,6 @@
 const express = require('express');
-const routes = require('./src/routes/userRoutes');
+const routesUser = require('./src/routes/userRoutes');
+const routerAuth = require('./src/routes/authRoute');
 // const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -22,7 +23,8 @@ app.use(express.urlencoded({ extended: true}));
 //     })
 // );
 
-app.use('/users', routes);
+app.use('/users', routesUser);
+app.use('/auth', routerAuth);
 
 const PORT = 3000;
 app.listen(PORT, () => {
