@@ -1,6 +1,7 @@
 // Retrieve data using Sequelizze
 const sequelize = require('../../config/sequelize');
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
 
 async function getUsers(req, res){
     try{
@@ -18,7 +19,9 @@ async function getUsers(req, res){
 
 async function addUsers(req, res){
     try{
-        const user = await User.create(req.body);
+        const bodyReq = req.body;
+        bodyReq['password'] = await bcrypt.hash(bodyReq.password,10)
+        const user = await User.create(bodyReq);
         res.json(user);
     }catch (e) {
         console.error(e);

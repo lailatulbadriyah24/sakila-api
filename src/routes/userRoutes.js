@@ -7,6 +7,7 @@ const authorizationMiddleWare = require('../middlewares/authMiddleware');
 router.post('/', controller.addUsers);
 router.put('/:id', controller.editUsers);
 router.delete('/:id', controller.deleteUsers);
-router.get('/', authorizationMiddleWare(['admin']), controller.getUsers);
+// router.get('/', authorizationMiddleWare(['admin']), controller.getUsers);
+router.get('/', controller.getUsers);
 
 module.exports = router;
